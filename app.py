@@ -39,7 +39,22 @@ success     = [ 100, 100, 95,  50, 20 ]      # % syccessfully completed projects
 #plt.show( )
 
 w = np.random.normal()
-print(w)
+#rint(w)
+
+def sigmoid(x):
+    return 1 / (1 + np.exp( -1 ))
+
+class Neuron:
+    
+    def __init__( self, weight ):
+        self.weight = weight
+    
+    def feedForward( self, inputs ):
+        total = np.dot( self.weight, inputs )
+        return sigmoid( total )
+
+n = Neuron( w )
+print(n.feedForward( hours_a_day ))
 
 
 
