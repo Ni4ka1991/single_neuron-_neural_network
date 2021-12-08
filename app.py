@@ -24,29 +24,27 @@ print(k)
 plt.plot( k,  color='red', linestyle = 'solid', linewidth = 1, marker = "x" )
 #plt.show( )
 
+# if k >= 16,6 => syccess
+# X < 4 ?????????????????   incomplete condition
+#syccess >= 80%
 
 ###
 w = 0.5
 b = 0
 ###
 
-#1
-X = 4
-Y = ( X * k[0] ) * w # => yes syccess
+# YES/NO logic 1/0
 
-#2
-X = 6
-Y = ( X * k[1] ) * w # => yes syccess
+for i in range( len( hours_a_day )):
+    X = 4
+    Y = ( X * k[i] ) * w # => no syccess
+    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5" )
 
-#3
-X = 8
-Y = ( X * k[2] ) * w # => no syccess
+#Upgrade the model with the activation function:
 
-#4
-X = 16
-Y = ( X * k[3] ) * w # => no syccess
 
-#5
-X = 20
-Y = ( X * k[4] ) * w # => no syccess
+
+
+
+
 
