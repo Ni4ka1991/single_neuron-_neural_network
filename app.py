@@ -32,15 +32,14 @@ b = 0
 def sigmoida(var):
     return 1 / ( 1 + np.exp(- var ))
 
-#view data
+#Upgrade the model with the activation function:
 for i in range( len( hours_a_day )):
     X = 4
     Y = ( X * k[i] ) * w
-    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5" )
+    S = sigmoida(Y)
+    yes = True if S >= 0.99 else False 
+    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes}" )
 
-
-
-#Upgrade the model with the activation function:
 
 
 
