@@ -47,22 +47,22 @@ def sigmoida(var):
 
 #Upgrade the model with the activation function:
 system( "clear" )
-for u in range(7):
+w = 0.5
+for u in range(10):
     print()
     print( f"######## EPOCH {u} #######" )
-    print(w)
-    w = 0.5
+#    print(w)
     for i in range( len( hours_a_day )):
         X = 4
         Y = ( X * k[i] ) * w
         S = sigmoida(Y)
         yes = True if S >= 0.99 else False
-        print(f"{yes} : {Y_N_success[i]}")
         err = False
         if( yes != Y_N_success[i] ):
-            print(f"{yes} != {Y_N_success}")
             err = True
-            w += 0.03
+            r = np.random.normal()
+#            print(r)
+            w += r
         print( f"Calculated success f(w)= {yes:3};  Test data = {Y_N_success[i]:3};  Correct/Incorrect resolved = {err}" )
 
 
