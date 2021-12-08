@@ -12,10 +12,22 @@ plt.style .use( 'seaborn-whitegrid' )
 #DATA
 hours_a_day = [ 4,   6,   8,   16, 20 ]      #time elapsed to the projects per day (max 24 ours, min != 0)   x = hours_a_day = [0;24]
 success     = [ 100, 100, 95,  50, 20 ]      # % syccessfully completed projects                             y = success = [0; 100]
+
+
+
+#syccess >= 80%
+Y_N_success = []
+
+def success_func( var, succ_persent ):
+ for i in range( len( var )):
+     i = True if var[i] >= succ_persent else False
+     Y_N_success.append(i)
+
+success_func( success, 80 )
 ###
 
 
-#Dependencies
+#Approximate dependence
 k = []
 
 for i in range( len( hours_a_day )):
@@ -37,8 +49,9 @@ for i in range( len( hours_a_day )):
     X = 4
     Y = ( X * k[i] ) * w
     S = sigmoida(Y)
-    yes = True if S >= 0.99 else False 
-    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes}" )
+    yes = True if S >= 0.99 else False
+    err = Y_N_success[i] and yes
+    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes};  err = {err}" )
 
 
 
@@ -49,4 +62,3 @@ for i in range( len( hours_a_day )):
 
 # if k >= 16,6 => syccess
 # X < 4 ?????????????????   incomplete condition
-#syccess >= 80%
