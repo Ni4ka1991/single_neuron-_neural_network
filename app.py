@@ -2,6 +2,7 @@
 
 
 import numpy as np
+from os import system
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -45,20 +46,24 @@ def sigmoida(var):
     return 1 / ( 1 + np.exp(- var ))
 
 #Upgrade the model with the activation function:
-
-for u in range(20):
+system( "clear" )
+for u in range(7):
     print()
     print( f"######## EPOCH {u} #######" )
+    print(w)
     w = 0.5
     for i in range( len( hours_a_day )):
         X = 4
         Y = ( X * k[i] ) * w
         S = sigmoida(Y)
         yes = True if S >= 0.99 else False
-        err = Y_N_success[i] and yes
-        if( err == True ):
+        print(f"{yes} : {Y_N_success[i]}")
+        err = False
+        if( yes != Y_N_success[i] ):
+            print(f"{yes} != {Y_N_success}")
+            err = True
             w += 0.03
-        print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes};  err = {err}" )
+        print( f"Calculated success f(w)= {yes:3};  Test data = {Y_N_success[i]:3};  Correct/Incorrect resolved = {err}" )
 
 
 
