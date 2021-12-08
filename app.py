@@ -45,13 +45,20 @@ def sigmoida(var):
     return 1 / ( 1 + np.exp(- var ))
 
 #Upgrade the model with the activation function:
-for i in range( len( hours_a_day )):
-    X = 4
-    Y = ( X * k[i] ) * w
-    S = sigmoida(Y)
-    yes = True if S >= 0.99 else False
-    err = Y_N_success[i] and yes
-    print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes};  err = {err}" )
+
+for u in range(20):
+    print()
+    print( f"######## EPOCH {u} #######" )
+    w = 0.5
+    for i in range( len( hours_a_day )):
+        X = 4
+        Y = ( X * k[i] ) * w
+        S = sigmoida(Y)
+        yes = True if S >= 0.99 else False
+        err = Y_N_success[i] and yes
+        if( err == True ):
+            w += 0.03
+        print( f"hours_a_day = {hours_a_day[i]:3};    syccess*w = {Y:20};    k = {k[i]:20};    w = 0.5;   S = {S:20}; yes = {yes};  err = {err}" )
 
 
 
